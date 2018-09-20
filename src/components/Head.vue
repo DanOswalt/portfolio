@@ -1,34 +1,32 @@
 <template>
-  <section class="Head">
+  <section class="head">
     <div class="hero is-bold">
       <div class="hero-body">
-        <div class="container">
-          <h1 class="title is-size-1">
+        <div class="titles container">
+          <div class="title is-size-2-mobile is-size-1">
             Dan Oswalt
-          </h1>
-          <h2 class="subtitle">
+          </div>
+          &nbsp&nbsp&nbsp
+          <div class="subtitle is-size-3-mobile is-size-2">
             Web Developer
-          </h2>
+          </div>
         </div>
       </div>
     </div>
-    <div class="under-head container">
+    <div class="hero-bottom container">
       <div class="tile is-ancestor">
-        <div class="tile">
-          <div class="profile-pic-container">
+        <div class="tile is-5">
+          <div class="profile-pic-outer-circle">
             <img alt="Picture of Dan Oswalt"
             src="../assets/me.jpeg"
             class="profile-pic"/>
           </div>
         </div>
-        <div class="tile">
-          <div class="summary-statement is-size-7">
-            <p>
-              "I am a problem-solver, communicator, and innovator, looking for a full transition into web development.
-            </p>
-            <br>
-            <p>
-              I have 3+ years of on-the-job experience using JavaScript, HTML, and CSS to build full-stack apps and enhancements to sites and services."
+        <div class="tile is-7">
+          <div class="summary-statement is-size-6 is-size-7-tablet">
+            <p class="summary-point" v-for="(point, index) in summaryPoints" :key="index">
+              <i class="summary-icon fas fa-hand-point-right"></i>
+              {{ point }}
             </p>
           </div>
         </div>
@@ -39,7 +37,16 @@
 
 <script>
 export default {
-  name: "Head"
+  name: "Head",
+  data () {
+    return {
+      summaryPoints: [
+        `I am a problem-solver, communicator, and innovator.`,
+        `I have ${ new Date().getFullYear() - 2015 }+ years of on-the-job experience using JavaScript, HTML, and CSS to build full-stack apps and enhancements to sites and services.`,
+        `I am like, *this close* to starting to learn to play my synthesizer`
+      ]
+    }
+  }
 };
 </script>
 
@@ -47,33 +54,46 @@ export default {
 <style scoped>
 .hero {
   background: #111;
-  height: 35vh;
+  height: 10em;
 }
 .title {
+  display: inline-block;
+  padding: 0;
+  margin-bottom: 0.2em;
   color: #eee;
 }
 .subtitle {
+  display: inline-block;
+  padding: 0;
   color: #cc0000;
 }
-.under-head {
-  width: 50%;
+.hero-bottom {
+  width: 70%;
 }
-.profile-pic-container {
+.profile-pic-outer-circle {
   display: inline-block;
   background-color: white;
-  margin-top: -35px;
+  margin: -15px auto;
   height: 205px;
   width: 205px;
   border-radius: 100%;
   border: dashed #cc0000 1px;
 }
 .profile-pic {
+  display: block;
   max-width: 200px;
-  margin-top: 2.5px;
   border-radius: 100%;
+  margin: 2.5px;
 }
 .summary-statement {
   color: #111;
   margin-top: 40px;
+  text-align: left;
+}
+.summary-point {
+  margin-bottom: 0.75em;
+}
+.summary-icon {
+  color: #cc0000;
 }
 </style>
