@@ -16,14 +16,12 @@
     <div class="hero-bottom container">
       <div class="tile is-ancestor">
         <div class="tile is-5">
-          <div class="profile-pic-outer-circle">
-            <img alt="Picture of Dan Oswalt"
-            src="../assets/me.jpeg"
-            class="profile-pic"/>
-          </div>
+          <img alt="Picture of Dan Oswalt"
+          src="../assets/me.jpeg"
+          class="profile-pic"/>
         </div>
         <div class="tile is-7">
-          <div class="summary-statement is-size-6 is-size-7-tablet">
+          <div class="summary-statement is-size-6">
             <p class="summary-point" v-for="(point, index) in summaryPoints" :key="index">
               <i class="summary-icon fas fa-hand-point-right"></i>
               {{ point }}
@@ -52,6 +50,9 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.head {
+  height: 100vh;
+}
 .hero {
   background: #111;
   height: 10em;
@@ -59,7 +60,7 @@ export default {
 .title {
   display: inline-block;
   padding: 0;
-  margin-bottom: 0.2em;
+  margin: 0.1em auto;
   color: #eee;
 }
 .subtitle {
@@ -70,20 +71,13 @@ export default {
 .hero-bottom {
   width: 70%;
 }
-.profile-pic-outer-circle {
-  display: inline-block;
-  background-color: white;
-  margin: -15px auto;
-  height: 205px;
-  width: 205px;
-  border-radius: 100%;
-  border: dashed #cc0000 1px;
-}
 .profile-pic {
-  display: block;
+  display: inline-block;
   max-width: 200px;
+  max-height: 200px;
+  margin: -15px auto;
   border-radius: 100%;
-  margin: 2.5px;
+  border: white solid 5px;
 }
 .summary-statement {
   color: #111;

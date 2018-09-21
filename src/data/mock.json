@@ -5,7 +5,7 @@
       "hq2.gif"
     ],
     "summary": "Tool to expedite library’s retrieval process",
-    "role": "",
+    "role": "I discovered in our library's cloud catalog software that there was an API that one could use to get information on books that patrons were requesting. The old process was to print a report once per day. With this live window into the holds queue, we could fetch them as they arrived. A desktop app for our front-desk computers made the most sense, so I designed and developed this in Electron.js with Vue.js on the front-end. I animated our owl logo SVG with a JS library called Velocity.js (which you only get to see if you clear the queue).",
     "tags": [
       "javascript",
       "HTML5",

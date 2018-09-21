@@ -2,17 +2,22 @@
   <section class="project">
     <div class="card">
       <header class="project-header card">
-        <h4 class="project-title title card-header-title">
-          {{ project.title }}
-        </h4>
-        <a v-for="(link, index) in project.links"
-           :key="index"
-           :href="link.url"
-           class="project-link"
-           target="_blank"><i class="fab fa-github"></i></a>
+        <div class="title-and-links-container">
+          <h4 class="project-title title card-header-title">
+            {{ project.title }}
+          </h4>
+          <a v-for="(link, index) in project.links"
+             :key="index"
+             :href="link.url"
+             class="project-link"
+             target="_blank"><i class="fab fa-github"></i></a>
+        </div>
+        <h5 class="project-subtitle subtitle card-header-title">
+          {{ project.summary }}
+        </h5>
       </header>
       <div class="card-content">
-        <ul>
+        <ul class="project-tags">
           <li v-for="(tag, index) in project.tags"
               :key="index"
               class="project-tag"
@@ -29,15 +34,6 @@
         </div>
         <div class="tile card-content">
           <div class="project-description content">
-            <h4 class="subtitle">
-              Summary:
-            </h4>
-            <p class="">
-              {{ project.summary }}
-            </p>
-            <h4 class="subtitle">
-              My Role:
-            </h4>
             <p class="project-role">
               {{ project.role }}
             </p>
@@ -59,18 +55,35 @@ export default {
 </script>
 
 <style scoped>
+card {
+  border: black 1px solid;
+}
 .project-header {
   text-align: left;
+  background-color: #111;
+  border-bottom: 4px solid #cc0000;
 }
 .project-title {
   display: inline-block;
   margin-bottom: 0;
   font-size: 2.5em;
-  color: #111;
+  color: #eee;
   font-weight: lighter;
+}
+.project-subtitle {
+  color: #aaa;
+  font-weight: lighter;
+  padding-top: 0.1em;
+}
+.project-tags {
+  text-align: left;
+}
+.project-tag {
+  margin: 0.1em;
 }
 .project-link {
   font-size: 1.5em;
+  color: #eee;
 }
 .project-image {
   margin: 2em auto;
@@ -83,10 +96,4 @@ export default {
   width: 100%;
   margin-top: 0.5em;
 }
-.project .subtitle {
-  color: #cc0000;
-}
-/* .project-tag {
-  margin: 0.75em 0.5em;
-} */
 </style>

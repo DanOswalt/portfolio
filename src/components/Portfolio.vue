@@ -1,8 +1,8 @@
 <template>
   <section class="portfolio section">
     <div class="container">
-      <h1 class="title is-1">Portfolio</h1>
-      <div class="portfolio-frame box">
+      <!-- <h1 class="title is-3">Portfolio</h1> -->
+      <div class="portfolio-frame">
         <Project v-for="(project, index) in projects"
         :key="index"
         :project="project"
@@ -34,10 +34,11 @@ export default {
   margin: 0 auto;
 }
 .portfolio-frame {
-  background: #111;
+  /* background: #111; */
 }
 .title {
-  color: #cc0000;
+  font-weight: lighter;
+  margin-bottom: 2em;
 }
 .project {
   margin: 1em;
