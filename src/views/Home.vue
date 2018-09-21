@@ -1,19 +1,21 @@
 <template>
   <div class="home">
     <Head/>
+    <Portfolio/>
     <Foot/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import Head from "@/components/Head.vue";
-import Foot from "@/components/Foot.vue";
+import Head from "@/components/Head.vue"
+import Foot from "@/components/Foot.vue"
+import Portfolio from "@/components/Portfolio.vue"
 
 export default {
   name: "home",
   components: {
     Head,
+    Portfolio,
     Foot
   }
 };
