@@ -10,7 +10,7 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #111;
 }
 ul {
   list-style-type: none;
@@ -21,6 +21,6 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color: #111;
 }
 </style>
