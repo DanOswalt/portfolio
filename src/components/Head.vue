@@ -21,12 +21,34 @@
           class="profile-pic"/>
         </div>
         <div class="tile is-7">
-          <div class="summary-statement is-size-6">
-            <p class="summary-point" v-for="(point, index) in summaryPoints" :key="index">
-              <i class="summary-icon fas fa-hand-point-right"></i>
-              {{ point }}
-            </p>
-          </div>
+          <ul class="contact-links">
+            <li>
+              <a href="https://github.com/DanOswalt" target="_blank">
+                <i class="contact-icon is-size-3-mobile fab fa-github"></i>
+                <span class="is-hidden-mobile">Github</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.linkedin.com/in/danoswalt" target="_blank">
+                <i class="contact-icon is-size-3-mobile fab fa-linkedin"></i>
+                <span class="is-hidden-mobile">LinkedIn</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://stackoverflow.com/users/3546817/dan-oswalt" target="_blank">
+                <i class="contact-icon is-size-3-mobile fab fa-stack-overflow" target="_blank"></i>
+                  <span class="is-hidden-mobile">StackOverflow</span>
+                </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="summary-container container tile is-ancestor">
+        <div class="summary-statement tile is-4"
+           v-for="(statement, index) in summaryStatements"
+           :key="index">
+          <i class="summary-icon fas fa-hand-point-right"></i>
+          <span class="is-size-7-mobile">{{ statement }}</span>
         </div>
       </div>
     </div>
@@ -38,7 +60,7 @@ export default {
   name: "Head",
   data () {
     return {
-      summaryPoints: [
+      summaryStatements: [
         `I am a problem-solver, communicator, and innovator.`,
         `I have ${ new Date().getFullYear() - 2015 }+ years of on-the-job experience using JavaScript, HTML, and CSS to build full-stack apps and enhancements to sites and services.`,
         `I am like, *this close* to starting to learn to play my synthesizer`
@@ -79,13 +101,20 @@ export default {
   border-radius: 100%;
   border: white solid 5px;
 }
+.contact-links {
+  margin-top: 20px;
+}
+.contact-icon {
+  margin-right: 0.3em;
+  font-size: 1.2em;
+}
+.summary-container {
+  margin-top: 20px;
+}
 .summary-statement {
   color: #111;
-  margin-top: 40px;
+  margin-top: 5px;
   text-align: left;
-}
-.summary-point {
-  margin-bottom: 0.75em;
 }
 .summary-icon {
   color: #cc0000;
