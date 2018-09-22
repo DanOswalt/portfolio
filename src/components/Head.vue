@@ -52,6 +52,9 @@
         </div>
       </div>
     </div>
+    <div @click="scrollToPortfolio" class="view-portfolio-container has-text-centered">
+      <i class="view-portfolio-arrow fas fa-chevron-circle-down"></i>
+    </div>
   </section>
 </template>
 
@@ -65,6 +68,14 @@ export default {
         `I have ${ new Date().getFullYear() - 2015 }+ years of on-the-job experience using JavaScript, HTML, and CSS to build full-stack apps and enhancements to sites and services.`,
         `I am like, *this close* to starting to learn to play my synthesizer`
       ]
+    }
+  },
+  methods: {
+    scrollToPortfolio () {
+      document.querySelector('.portfolio-title').scrollIntoView({
+        block: "start",
+        behavior: "smooth"
+      });
     }
   }
 };
@@ -118,5 +129,15 @@ export default {
 }
 .summary-icon {
   color: #cc0000;
+}
+.view-portfolio-container {
+  position: fixed;
+  bottom: 2em;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.view-portfolio-arrow {
+  font-size: 3em;
+  cursor: pointer;
 }
 </style>

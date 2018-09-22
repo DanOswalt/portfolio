@@ -1,5 +1,6 @@
 <template>
   <section class="portfolio section">
+    <h1 class="title portfolio-title has-text-left">Portfolio</h1>
     <div class="container">
       <!-- <h1 class="title is-3">Portfolio</h1> -->
       <div class="portfolio-frame">
@@ -32,6 +33,7 @@ export default {
 <style scoped>
 .portfolio {
   margin: 0 auto;
+  width: 100%;
 }
 .portfolio-frame {
   /* background: #111; */
