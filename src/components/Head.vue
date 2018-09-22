@@ -52,9 +52,11 @@
         </div>
       </div>
     </div>
-    <div @click="scrollToPortfolio" class="view-portfolio-container has-text-centered">
-      <i class="view-portfolio-arrow fas fa-chevron-circle-down"></i>
-    </div>
+    <transition name="fade">
+      <div v-if="!scrolled" @click="scrollToPortfolio" class="view-portfolio-container has-text-centered">
+        <i class="view-portfolio-arrow fas fa-chevron-circle-down"></i>
+      </div>
+    </transition>
   </section>
 </template>
 
@@ -67,7 +69,8 @@ export default {
         `I am a problem-solver, communicator, and innovator.`,
         `I have ${ new Date().getFullYear() - 2015 }+ years of on-the-job experience using JavaScript, HTML, and CSS to build full-stack apps and enhancements to sites and services.`,
         `I am like, *this close* to starting to learn to play my synthesizer`
-      ]
+      ],
+      scrolled: false
     }
   },
   methods: {
@@ -76,7 +79,16 @@ export default {
         block: "start",
         behavior: "smooth"
       });
+    },
+    handleScroll () {
+      this.scrolled = window.scrollY > 0;
     }
+  },
+  created () {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 };
 </script>
@@ -139,5 +151,14 @@ export default {
 .view-portfolio-arrow {
   font-size: 3em;
   cursor: pointer;
+}
+
+/* animation */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.25s ease-out;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>
