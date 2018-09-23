@@ -43,18 +43,21 @@
           </ul>
         </div>
       </div>
-      <div class="summary-container container tile is-ancestor">
+      <!-- <div class="summary-container container tile is-ancestor">
         <div class="summary-statement tile is-4"
            v-for="(statement, index) in summaryStatements"
            :key="index">
           <i class="summary-icon fas fa-hand-point-right"></i>
           <span class="is-size-7-mobile">{{ statement }}</span>
         </div>
-      </div>
+      </div> -->
     </div>
     <transition name="fade">
       <div v-if="!scrolled" @click="scrollToPortfolio" class="view-portfolio-container has-text-centered">
         <i class="view-portfolio-arrow fas fa-chevron-circle-down"></i>
+        <transition name="fade">
+          <span v-visible="labelIsVisible" v-show="showLabel" class="arrow-label is-size-5">My Work</span>
+        </transition>
       </div>
     </transition>
   </section>
@@ -70,7 +73,9 @@ export default {
         `I have ${ new Date().getFullYear() - 2015 }+ years of on-the-job experience using JavaScript, HTML, and CSS to build full-stack apps and enhancements to sites and services.`,
         `I am like, *this close* to starting to learn to play my synthesizer`
       ],
-      scrolled: false
+      scrolled: true,
+      showLabel: false,
+      labelIsVisible: true
     }
   },
   methods: {
@@ -86,6 +91,9 @@ export default {
   },
   created () {
     window.addEventListener('scroll', this.handleScroll);
+    setTimeout(() => { this.scrolled = false }, 1000)
+    setTimeout(() => { this.showLabel = true }, 3000)
+
   },
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll);
@@ -152,10 +160,15 @@ export default {
   font-size: 3em;
   cursor: pointer;
 }
+.arrow-label {
+  color: #cc0000;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}
 
 /* animation */
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 0.25s ease-out;
+  transition: opacity 0.5s ease-out;
 }
 
 .fade-enter, .fade-leave-to {
