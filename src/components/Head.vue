@@ -43,14 +43,6 @@
           </ul>
         </div>
       </div>
-      <!-- <div class="summary-container container tile is-ancestor">
-        <div class="summary-statement tile is-4"
-           v-for="(statement, index) in summaryStatements"
-           :key="index">
-          <i class="summary-icon fas fa-hand-point-right"></i>
-          <span class="is-size-7-mobile">{{ statement }}</span>
-        </div>
-      </div> -->
     </div>
     <transition name="fade">
       <div v-if="!scrolled" @click="scrollToPortfolio" class="view-portfolio-container has-text-centered">
@@ -64,6 +56,8 @@
 </template>
 
 <script>
+import { storage } from "@/firebase/init.js"
+
 export default {
   name: "Head",
   data () {
@@ -91,8 +85,12 @@ export default {
   },
   created () {
     window.addEventListener('scroll', this.handleScroll);
+
+    // fade in the down arrow and label
     setTimeout(() => { this.scrolled = false }, 1000)
     setTimeout(() => { this.showLabel = true }, 3000)
+
+    //
 
   },
   destroyed () {
