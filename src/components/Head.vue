@@ -17,7 +17,7 @@
       <div class="tile is-ancestor">
         <div class="tile is-5">
           <img alt="Picture of Dan Oswalt"
-          src="../assets/me.jpeg"
+          src="gs://danoswalt-161b1.appspot.com/me.jpeg"
           class="profile-pic"/>
         </div>
         <div class="tile is-7">
@@ -47,9 +47,6 @@
     <transition name="fade">
       <div v-if="!scrolled" @click="scrollToPortfolio" class="view-portfolio-container has-text-centered">
         <i class="view-portfolio-arrow fas fa-chevron-circle-down"></i>
-        <transition name="fade">
-          <span v-visible="labelIsVisible" v-show="showLabel" class="arrow-label is-size-5">My Work</span>
-        </transition>
       </div>
     </transition>
   </section>
@@ -88,9 +85,9 @@ export default {
 
     // fade in the down arrow and label
     setTimeout(() => { this.scrolled = false }, 1000)
-    setTimeout(() => { this.showLabel = true }, 3000)
 
-    //
+    // const storageRef = storage.ref();
+
 
   },
   destroyed () {
