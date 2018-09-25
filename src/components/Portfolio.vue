@@ -31,10 +31,12 @@ export default {
   created () {
     db.collection('projects').get()
     .then(snapshot => {
-      console.log(snapshot)
       this.projects = snapshot.docs.map(doc => {
         return doc.data()
       })
+    })
+    .catch(err => {
+      console.log(err.message)
     })
   }
 }

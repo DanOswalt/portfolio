@@ -28,7 +28,8 @@
         <div class="tile">
           <!-- <div class="card-image"> -->
             <figure class="image project-image">
-              <img :src="require(`@/assets/${project.imgs[0]}`)" alt="project picture">
+              <!-- <img :src="require(`@/assets/${project.imgs[0]}`)" alt="project picture"> -->
+              <img :src="imageSrc" alt="">
             </figure>
           <!-- </div> -->
         </div>
@@ -46,10 +47,45 @@
 </template>
 
 <script>
+import { db, storage } from "@/firebase/init.js"
+
 export default {
   name: "Project",
   props: {
     project: Object
+  },
+  data () {
+    return {
+      imageSrc: ""
+    }
+  },
+  mounted () {
+    const storageRef = storage.ref()
+
+    storageRef.child("images/" + this.project.imgs[0]).getDownloadURL()
+    .then(url => {
+      this.imageSrc = url
+    })
+    .catch(error => {
+      // https://firebase.google.com/docs/storage/web/handle-errors
+      switch (error.code) {
+        case 'storage/object_not_found':
+          // File doesn't exist
+          break;
+
+        case 'storage/unauthorized':
+          // User doesn't have permission to access the object
+          break;
+
+        case 'storage/canceled':
+          // User canceled the upload
+          break;
+
+        case 'storage/unknown':
+          // Unknown error occurred, inspect the server response
+          break;
+      }
+    })
   }
 };
 </script>
