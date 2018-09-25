@@ -17,7 +17,7 @@
       <div class="tile is-ancestor">
         <div class="tile is-5">
           <img alt="Picture of Dan Oswalt"
-          src="gs://danoswalt-161b1.appspot.com/me.jpeg"
+          src="https://firebasestorage.googleapis.com/v0/b/danoswalt-161b1.appspot.com/o/me.jpeg?alt=media&token=7d1b7f98-42f5-463a-9abd-ecf8bc3167c9"
           class="profile-pic"/>
         </div>
         <div class="tile is-7">
@@ -47,6 +47,7 @@
     <transition name="fade">
       <div v-if="!scrolled" @click="scrollToPortfolio" class="view-portfolio-container has-text-centered">
         <i class="view-portfolio-arrow fas fa-chevron-circle-down"></i>
+        <span class="arrow-label">My Work</span>
       </div>
     </transition>
   </section>
@@ -158,7 +159,7 @@ export default {
 .arrow-label {
   color: #cc0000;
   margin-left: 20px;
-  margin-bottom: 10px;
+  font-size: 1.5em;
 }
 
 /* animation */

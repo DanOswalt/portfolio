@@ -1,6 +1,6 @@
 <template>
-  <section class="portfolio section">
-    <h1 class="title portfolio-title has-text-left">Portfolio</h1>
+  <section class="portfolio">
+    <h1 class="hero portfolio-title has-text-left">Portfolio</h1>
     <div class="container">
       <!-- <h1 class="title is-3">Portfolio</h1> -->
       <div class="portfolio-frame">
@@ -37,6 +37,10 @@ export default {
 }
 .portfolio-frame {
   /* background: #111; */
+}
+.portfolio-title {
+  background-color: #222;
+  color: #eee;
 }
 .title {
   font-weight: lighter;
