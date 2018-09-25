@@ -15,7 +15,8 @@
 
 <script>
 import Project from "@/components/Project.vue"
-import projects from '../data/mock.json'
+// import projects from '../data/mock.json'
+import {db, storage} from '@/firebase/init.js'
 
 export default {
   name: "Portfolio",
@@ -24,8 +25,17 @@ export default {
   },
   data () {
     return {
-      projects
+      projects: []
     }
+  },
+  created () {
+    db.collection('projects').get()
+    .then(snapshot => {
+      console.log(snapshot)
+      this.projects = snapshot.docs.map(doc => {
+        return doc.data()
+      })
+    })
   }
 }
 </script>
