@@ -13,7 +13,7 @@
              target="_blank"><i class="fab fa-github"></i></a>
         </div>
         <h5 class="project-subtitle subtitle card-header-title">
-          {{ project.summary }}
+          {{ project.description }}
         </h5>
       </header>
       <div class="card-content">
@@ -34,8 +34,8 @@
         </div>
         <div class="tile card-content">
           <div class="project-description content">
-            <p class="project-role">
-              {{ project.role }}
+            <p class="project-summary">
+              {{ project.summary }}
             </p>
           </div>
         </div>

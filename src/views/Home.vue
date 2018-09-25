@@ -12,7 +12,7 @@ import Foot from "@/components/Foot.vue"
 import Portfolio from "@/components/Portfolio.vue"
 
 export default {
-  name: "home",
+  name: "Home",
   components: {
     Head,
     Portfolio,

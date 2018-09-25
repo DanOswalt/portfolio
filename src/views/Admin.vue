@@ -58,11 +58,21 @@
         <div class="field">
           <label class="label">Pic(s)</label>
           <div class="control">
-            <input type="file" name="" value="">
+            <input class="input" id="progressBar" @change="uploadFile($event)" type="file">
+            <progress :value="progress" max="100">0%</progress>
+            <span v-show="fileUploaded">
+              <i class="fas fa-check"></i>
+            </span>
           </div>
         </div>
 
         <textarea class="textarea" name="summary" rows="20" cols="80" v-model="project.summary" placeholder="summary"></textarea>
+        <div class="view-json section">
+          <h1 class="title">JSON for submitted project:</h1>
+          <code>
+            {{ prettyJSON }}
+          </code>
+        </div>
         <button class="button is-large is-info" @click="submitProject" type="button" name="button">Submit Project</button>
       </form>
     </div>
@@ -86,9 +96,20 @@ export default {
         title: "",
         description: "",
         summary: "",
+        imgs: [],
         tags: [],
-        links: []
-      }
+        links: [],
+        order: 0
+      },
+      progress: 0
+    }
+  },
+  computed : {
+    fileUploaded () {
+      return this.progress === 100
+    },
+    prettyJSON () {
+      return JSON.stringify(this.project, null, 4)
     }
   },
   methods: {
@@ -126,12 +147,28 @@ export default {
       })
       this.currentLink = ""
     },
-    // removeLastLink () {
-    //   this.project.tags.pop()
-    //   console.log(this.project.tags)
-    // },
+    uploadFile (e) {
+      const file = e.target.files[0]
+      const storageRef = storage.ref('images/' + file.name)
+      this.project.imgs.push(file.name)
+
+      let task = storageRef.put(file)
+
+      task.on('state_changed', snapshot => {
+        var percent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        this.progress = percent;
+      })
+    },
     submitProject () {
-      console.log(this.project);
+      db.collection('projects').add(this.project)
+      .then(doc => {
+        this.$router.push({ name: 'Home' })
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage)
+      });
     }
   },
   mounted () {
