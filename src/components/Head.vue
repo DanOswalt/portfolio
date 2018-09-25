@@ -72,7 +72,7 @@ export default {
   },
   methods: {
     scrollToPortfolio () {
-      document.querySelector('.portfolio-title').scrollIntoView({
+      document.querySelector('.project').scrollIntoView({
         block: "start",
         behavior: "smooth"
       });
@@ -86,10 +86,6 @@ export default {
 
     // fade in the down arrow and label
     setTimeout(() => { this.scrolled = false }, 1000)
-
-    // const storageRef = storage.ref();
-
-
   },
   destroyed () {
     window.removeEventListener('scroll', this.handleScroll);

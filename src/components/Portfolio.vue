@@ -1,8 +1,9 @@
 <template>
   <section class="portfolio">
-    <h1 class="hero portfolio-title has-text-left">Portfolio</h1>
+    <hr class="divider"/>
+    <h1 class="title portfolio-title is-size-1">Portfolio</h1>
+    <hr class="divider"/>
     <div class="container">
-      <!-- <h1 class="title is-3">Portfolio</h1> -->
       <div class="portfolio-frame">
         <Project v-for="(project, index) in projects"
         :key="index"
@@ -47,20 +48,17 @@ export default {
   margin: 0 auto;
   width: 100%;
 }
-.portfolio-frame {
-  /* background: #111; */
-}
 .portfolio-title {
-  background-color: #222;
-  color: #eee;
-}
-.title {
+  color: #222;
+  padding: 0;
+  margin: 0 auto;
   font-weight: lighter;
-  margin-bottom: 2em;
+}
+.divider {
+  background-color: #cc0000;
 }
 .project {
-  margin: 1em;
   border-radius: 10px;
-  margin-bottom: 2.5em;
+  margin: 200px auto;
 }
 </style>

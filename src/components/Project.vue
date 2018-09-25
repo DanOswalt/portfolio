@@ -1,7 +1,7 @@
 <template>
   <section class="project">
     <div class="card">
-      <header class="project-header card">
+      <header class="project-header">
         <div class="title-and-links-container">
           <h4 class="project-title title card-header-title">
             {{ project.title }}
@@ -91,8 +91,10 @@ export default {
 </script>
 
 <style scoped>
-card {
-  border: black 1px solid;
+.card {
+  border: dashed black 1px;
+  max-width: 800px;
+  margin: 50px auto;
 }
 .project-header {
   text-align: left;
