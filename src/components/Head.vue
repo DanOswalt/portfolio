@@ -44,6 +44,20 @@
         </div>
       </div>
     </div>
+
+    <div class="summary section is-hidden-mobile">
+      <div class="summary-containers columns">
+        <div v-for="(statement, index) in summaryStatements"
+             :key="index"
+             class="summary-container column">
+          <p class="summary-statement box">
+            <i class="summary-icon fas fa-hand-point-right"></i>
+            {{ statement }}
+          </p>
+        </div>
+      </div>
+    </div>
+
     <transition name="fade">
       <div v-if="!scrolled" @click="scrollToPortfolio" class="view-portfolio-container has-text-centered">
         <i class="view-portfolio-arrow fas fa-chevron-circle-down"></i>
@@ -131,11 +145,14 @@ export default {
   margin-right: 0.3em;
   font-size: 1.2em;
 }
+.summary-containers {
+    margin-top: 10px;
+}
 .summary-container {
-  margin-top: 20px;
+  margin: 0 10px;
 }
 .summary-statement {
-  color: #111;
+  color: #666;
   margin-top: 5px;
   text-align: left;
 }
@@ -151,6 +168,11 @@ export default {
 .view-portfolio-arrow {
   font-size: 3em;
   cursor: pointer;
+  box-shadow: 0 8px 6px -6px black;
+  border-radius: 100%;
+}
+.view-portfolio-arrow:hover {
+  opacity: 0.6;
 }
 .arrow-label {
   color: #cc0000;
