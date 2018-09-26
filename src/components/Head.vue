@@ -2,7 +2,8 @@
   <section class="head">
     <div class="hero is-bold">
       <div class="hero-body">
-        <div class="titles container">
+
+        <div v-if="!shrunkenHeader" class="titles container">
           <div class="title is-size-2-mobile is-size-1">
             Dan Oswalt
           </div>
@@ -11,6 +12,17 @@
             Web Developer
           </div>
         </div>
+
+        <div v-else class="shrunken-header titles container has-text-left">
+          <span class="title is-size-4-mobile is-size-3">
+            Dan Oswalt
+          </span>
+          <span class="subtitle is-hidden-mobile is-size-5">
+            Web Developer
+          </span>
+          <Contacts v-show="showLinksInHeader" :inHeader="showLinksInHeader"/>
+        </div>
+
       </div>
     </div>
     <div class="hero-bottom container">
@@ -20,8 +32,9 @@
           src="https://firebasestorage.googleapis.com/v0/b/danoswalt-161b1.appspot.com/o/me.jpeg?alt=media&token=7d1b7f98-42f5-463a-9abd-ecf8bc3167c9"
           class="profile-pic"/>
         </div>
-        <div class="tile is-7">
-          <ul class="contact-links">
+        <div class="contacts-adjust tile is-7">
+          <Contacts/>
+          <!-- <ul class="contact-links">
             <li>
               <a href="https://github.com/DanOswalt" target="_blank">
                 <i class="contact-icon is-size-3-mobile fab fa-github"></i>
@@ -40,7 +53,7 @@
                   <span class="is-hidden-mobile">StackOverflow</span>
                 </a>
             </li>
-          </ul>
+          </ul> -->
         </div>
       </div>
     </div>
@@ -69,9 +82,13 @@
 
 <script>
 import { storage } from "@/firebase/init.js"
+import Contacts from "@/components/Contacts.vue"
 
 export default {
   name: "Head",
+  components: {
+    Contacts
+  },
   data () {
     return {
       summaryStatements: [
@@ -80,7 +97,9 @@ export default {
         `I am like, *this close* to starting to learn to play my synthesizer`
       ],
       scrolled: true,
+      shrunkenHeader: false,
       showLabel: false,
+      showLinksInHeader: false,
       labelIsVisible: true
     }
   },
@@ -93,6 +112,8 @@ export default {
     },
     handleScroll () {
       this.scrolled = window.scrollY > 0;
+      this.shrunkenHeader = window.scrollY > 120;
+      this.showLinksInHeader = window.scrollY > 350;
     }
   },
   created () {
@@ -127,8 +148,20 @@ export default {
   padding: 0;
   color: #cc0000;
 }
+.shrunken-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background: #111;
+  z-index: 1;
+}
 .hero-bottom {
   width: 70%;
+}
+.contacts-adjust {
+  margin-top: 20px;
 }
 .profile-pic {
   display: inline-block;
@@ -137,13 +170,6 @@ export default {
   margin: -15px auto;
   border-radius: 100%;
   border: white solid 5px;
-}
-.contact-links {
-  margin-top: 20px;
-}
-.contact-icon {
-  margin-right: 0.3em;
-  font-size: 1.2em;
 }
 .summary-containers {
     margin-top: 10px;

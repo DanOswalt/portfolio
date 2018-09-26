@@ -2,21 +2,18 @@
   <div class="home">
     <Head/>
     <Portfolio/>
-    <Foot/>
   </div>
 </template>
 
 <script>
 import Head from "@/components/Head.vue"
-import Foot from "@/components/Foot.vue"
 import Portfolio from "@/components/Portfolio.vue"
 
 export default {
   name: "Home",
   components: {
     Head,
-    Portfolio,
-    Foot
+    Portfolio
   }
 };
 </script>
