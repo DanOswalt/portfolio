@@ -1,5 +1,5 @@
 <template>
-  <section class="portfolio">
+  <section class="portfolio section">
     <hr class="divider"/>
     <h1 class="title portfolio-title is-size-1">Portfolio</h1>
     <hr class="divider"/>

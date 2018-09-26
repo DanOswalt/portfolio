@@ -14,9 +14,10 @@
         </div>
 
         <div v-else class="shrunken-header titles container has-text-left">
-          <span class="title is-size-4-mobile is-size-3">
+          <span class="title is-size-3">
             Dan Oswalt
           </span>
+          &nbsp&nbsp
           <span class="subtitle is-hidden-mobile is-size-5">
             Web Developer
           </span>
@@ -34,36 +35,16 @@
         </div>
         <div class="contacts-adjust tile is-7">
           <Contacts/>
-          <!-- <ul class="contact-links">
-            <li>
-              <a href="https://github.com/DanOswalt" target="_blank">
-                <i class="contact-icon is-size-3-mobile fab fa-github"></i>
-                <span class="is-hidden-mobile">Github</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/danoswalt" target="_blank">
-                <i class="contact-icon is-size-3-mobile fab fa-linkedin"></i>
-                <span class="is-hidden-mobile">LinkedIn</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://stackoverflow.com/users/3546817/dan-oswalt" target="_blank">
-                <i class="contact-icon is-size-3-mobile fab fa-stack-overflow" target="_blank"></i>
-                  <span class="is-hidden-mobile">StackOverflow</span>
-                </a>
-            </li>
-          </ul> -->
         </div>
       </div>
     </div>
 
-    <div class="summary section is-hidden-mobile">
+    <div class="summary section">
       <div class="summary-containers columns">
         <div v-for="(statement, index) in summaryStatements"
              :key="index"
              class="summary-container column">
-          <p class="summary-statement box">
+          <p class="summary-statement is-size-7-mobile box">
             <i class="summary-icon fas fa-hand-point-right"></i>
             {{ statement }}
           </p>
@@ -131,7 +112,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .head {
-  height: 100vh;
+  min-height: 150vh;
 }
 .hero {
   background: #111;
@@ -153,9 +134,12 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  height: 40px;
+  height: 50px;
   background: #111;
   z-index: 1;
+}
+.shrunken-header .title {
+  margin-left: 10px;
 }
 .hero-bottom {
   width: 70%;
@@ -172,7 +156,7 @@ export default {
   border: white solid 5px;
 }
 .summary-containers {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 .summary-container {
   margin: 0 10px;
@@ -213,5 +197,11 @@ export default {
 
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+
+@media only screen and (min-device-width: 768px) {
+  .head {
+    min-height: 120vh;
+  }
 }
 </style>
