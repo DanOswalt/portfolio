@@ -1,8 +1,8 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import VueVisible from 'vue-visible';
-import firebase from 'firebase';
+import VueVisible from "vue-visible";
+import firebase from "firebase";
 
 Vue.use(VueVisible);
 
@@ -13,4 +13,4 @@ firebase.auth().onAuthStateChanged(() => {
     router,
     render: h => h(App)
   }).$mount("#app");
-})
+});

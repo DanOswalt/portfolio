@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import Head from "@/components/Head.vue"
-import Portfolio from "@/components/Portfolio.vue"
+import Head from "@/components/Head.vue";
+import Portfolio from "@/components/Portfolio.vue";
 
 export default {
   name: "Home",
@@ -19,5 +19,4 @@ export default {
 </script>
 
 <style scoped media="screen">
-
 </style>

@@ -10,7 +10,7 @@
              :key="index"
              :href="link.url"
              class="project-link"
-             target="_blank"><i class="fab fa-github"></i></a>
+             target="_blank"><i :class="link.icon"></i></a>
         </div>
         <h5 class="project-subtitle subtitle card-header-title">
           {{ project.description }}
@@ -26,17 +26,16 @@
       </div>
       <div class="tile is-ancestor">
         <div class="tile">
-          <!-- <div class="card-image"> -->
-            <figure class="image project-image">
-              <!-- <img :src="require(`@/assets/${project.imgs[0]}`)" alt="project picture"> -->
-              <img :src="imageSrc" alt="">
-            </figure>
-          <!-- </div> -->
+          <figure class="image project-image">
+            <img :src="imageSrc" alt="project image">
+          </figure>
         </div>
         <div class="tile card-content">
           <div class="project-description content">
             <p class="project-summary">
-              {{ project.summary }}
+              <pre>
+                {{ project.summary }}
+              </pre>
             </p>
           </div>
         </div>
@@ -47,45 +46,47 @@
 </template>
 
 <script>
-import { db, storage } from "@/firebase/init.js"
+import { db, storage } from "@/firebase/init.js";
 
 export default {
   name: "Project",
   props: {
-    project: Object
+    project: Object,
   },
-  data () {
+  data() {
     return {
       imageSrc: ""
-    }
+    };
   },
-  mounted () {
-    const storageRef = storage.ref()
+  mounted() {
+    const storageRef = storage.ref();
 
-    storageRef.child("images/" + this.project.imgs[0]).getDownloadURL()
-    .then(url => {
-      this.imageSrc = url
-    })
-    .catch(error => {
-      // https://firebase.google.com/docs/storage/web/handle-errors
-      switch (error.code) {
-        case 'storage/object_not_found':
-          // File doesn't exist
-          break;
+    storageRef
+      .child("images/" + this.project.imgs[0])
+      .getDownloadURL()
+      .then(url => {
+        this.imageSrc = url;
+      })
+      .catch(error => {
+        // https://firebase.google.com/docs/storage/web/handle-errors
+        switch (error.code) {
+          case "storage/object_not_found":
+            // File doesn't exist
+            break;
 
-        case 'storage/unauthorized':
-          // User doesn't have permission to access the object
-          break;
+          case "storage/unauthorized":
+            // User doesn't have permission to access the object
+            break;
 
-        case 'storage/canceled':
-          // User canceled the upload
-          break;
+          case "storage/canceled":
+            // User canceled the upload
+            break;
 
-        case 'storage/unknown':
-          // Unknown error occurred, inspect the server response
-          break;
-      }
-    })
+          case "storage/unknown":
+            // Unknown error occurred, inspect the server response
+            break;
+        }
+      });
   }
 };
 </script>
@@ -134,5 +135,14 @@ export default {
   text-align: left;
   width: 100%;
   margin-top: 0.5em;
+}
+pre {
+  white-space: -moz-pre-line; /* Mozilla, supported since 1999 */
+  white-space: -pre-line; /* Opera */
+  white-space: -o-pre-line; /* Opera */
+  white-space: pre-line; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
+  word-wrap: break-word; /* IE 5.5+ */
+  background: #fff;
+  font-family: 'Ubuntu'
 }
 </style>

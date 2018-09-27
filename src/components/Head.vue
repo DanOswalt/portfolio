@@ -62,19 +62,20 @@
 </template>
 
 <script>
-import { storage } from "@/firebase/init.js"
-import Contacts from "@/components/Contacts.vue"
+import { storage } from "@/firebase/init.js";
+import Contacts from "@/components/Contacts.vue";
 
 export default {
   name: "Head",
   components: {
     Contacts
   },
-  data () {
+  data() {
     return {
       summaryStatements: [
         `I am a problem-solver, communicator, and innovator.`,
-        `I have ${ new Date().getFullYear() - 2015 }+ years of on-the-job experience using JavaScript, HTML, and CSS to build full-stack apps and enhancements to sites and services.`,
+        `I have ${new Date().getFullYear() -
+          2015}+ years of on-the-job experience using JavaScript, HTML, and CSS to build full-stack apps and enhancements to sites and services.`,
         `I am like, *this close* to starting to learn to play my synthesizer`
       ],
       scrolled: true,
@@ -82,29 +83,31 @@ export default {
       showLabel: false,
       showLinksInHeader: false,
       labelIsVisible: true
-    }
+    };
   },
   methods: {
-    scrollToPortfolio () {
-      document.querySelector('.portfolio').scrollIntoView({
+    scrollToPortfolio() {
+      document.querySelector(".portfolio").scrollIntoView({
         block: "start",
         behavior: "smooth"
       });
     },
-    handleScroll () {
+    handleScroll() {
       this.scrolled = window.scrollY > 0;
       this.shrunkenHeader = window.scrollY > 120;
       this.showLinksInHeader = window.scrollY > 350;
     }
   },
-  created () {
-    window.addEventListener('scroll', this.handleScroll);
+  created() {
+    window.addEventListener("scroll", this.handleScroll);
 
     // fade in the down arrow and label
-    setTimeout(() => { this.scrolled = false }, 1000)
+    setTimeout(() => {
+      this.scrolled = false;
+    }, 1000);
   },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll);
+  destroyed() {
+    window.removeEventListener("scroll", this.handleScroll);
   }
 };
 </script>
@@ -191,11 +194,13 @@ export default {
 }
 
 /* animation */
-.fade-enter-active, .fade-leave-active {
+.fade-enter-active,
+.fade-leave-active {
   transition: opacity 0.5s ease-out;
 }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 

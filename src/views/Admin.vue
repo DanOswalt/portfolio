@@ -19,7 +19,7 @@
     </div>
     <div v-else class="add-project">
       <h1 class="title">Add Project</h1>
-      <form class="add-project-form">
+      <form @change="updateJSON" class="add-project-form">
         <div class="field">
           <label class="label">Title</label>
           <div class="control">
@@ -58,11 +58,12 @@
         <div class="field">
           <label class="label">Pic(s)</label>
           <div class="control">
-            <input class="input" id="progressBar" @change="uploadFile($event)" type="file">
-            <progress :value="progress" max="100">0%</progress>
-            <span v-show="fileUploaded">
-              <i class="fas fa-check"></i>
-            </span>
+            <input class="input" @change="uploadFile($event)" type="file" multiple>
+            <div v-for="(img, index) in project.imgs" :key="index" class="progress-bars">
+              <ul>
+                <li>{{ img }}</li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -80,12 +81,12 @@
 </template>
 
 <script>
-import { db, storage } from "@/firebase/init.js"
-import firebase from "firebase"
+import { db, storage } from "@/firebase/init.js";
+import firebase from "firebase";
 
 export default {
   name: "admin",
-  data () {
+  data() {
     return {
       user: null,
       email: "",
@@ -101,78 +102,75 @@ export default {
         links: [],
         order: 0
       },
-      progress: 0
-    }
-  },
-  computed : {
-    fileUploaded () {
-      return this.progress === 100
-    },
-    prettyJSON () {
-      return JSON.stringify(this.project, null, 4)
-    }
+      prettyJSON: ""
+    };
   },
   methods: {
-    login () {
-      firebase.auth().signInWithEmailAndPassword(this.email, this.password)
-      .then(cred => {
-        this.user = cred.user
-        console.log(cred);
-      })
-      .catch(function(error) {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage)
-      });
+    login() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then(cred => {
+          this.user = cred.user;
+          console.log(cred);
+        })
+        .catch(function(error) {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorMessage);
+        });
     },
-    addTag () {
-      this.project.tags.push(this.currentTag)
-      this.currentTag = ""
-      console.log(this.project.tags);
+    addTag() {
+      this.project.tags.push(this.currentTag);
+      this.currentTag = "";
     },
-    addLink (which) {
-      let icon = null
+    addLink(which) {
+      let icon = null;
 
       if (which === 1) {
-        icon = 'github'
+        icon = "fab fa-github";
       } else if (which === 2) {
-        icon = 'web'
+        icon = "fas fa-link";
       } else {
-        return
+        return;
       }
 
       this.project.links.push({
         icon: icon,
         url: this.currentLink
-      })
-      this.currentLink = ""
-    },
-    uploadFile (e) {
-      const file = e.target.files[0]
-      const storageRef = storage.ref('images/' + file.name)
-      this.project.imgs.push(file.name)
-
-      let task = storageRef.put(file)
-
-      task.on('state_changed', snapshot => {
-        var percent = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        this.progress = percent;
-      })
-    },
-    submitProject () {
-      db.collection('projects').add(this.project)
-      .then(doc => {
-        this.$router.push({ name: 'Home' })
-      })
-      .catch(error => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage)
       });
+      this.currentLink = "";
+    },
+    uploadFile(e) {
+      const files = e.target.files;
+
+      for (let i = 0; i < files.length; i += 1) {
+        //store the image names in projects
+        this.project.imgs.push(files[i].name);
+
+        //put() the file into bucket
+        const storageRef = storage.ref("images/" + files[i].name);
+        storageRef.put(files[i]);
+      }
+    },
+    updateJSON() {
+      this.prettyJSON = JSON.stringify(this.project, null, 4);
+    },
+    submitProject() {
+      db.collection("projects")
+        .add(this.project)
+        .then(doc => {
+          this.$router.push({ name: "Home" });
+        })
+        .catch(error => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorMessage);
+        });
     }
   },
-  mounted () {
-    this.user = firebase.auth().currentUser
+  mounted() {
+    this.user = firebase.auth().currentUser;
   }
 };
 </script>

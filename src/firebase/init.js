@@ -1,4 +1,4 @@
-import Firebase from 'firebase'
+import Firebase from "firebase";
 
 // Initialize Firebase
 var config = {
@@ -10,12 +10,12 @@ var config = {
   messagingSenderId: "1025649020884"
 };
 
-const firebaseApp = Firebase.initializeApp(config)
+const firebaseApp = Firebase.initializeApp(config);
 const settings = {
   timestampsInSnapshots: true
-}
-firebaseApp.firestore().settings(settings)
+};
+firebaseApp.firestore().settings(settings);
 const db = firebaseApp.firestore();
 const storage = firebaseApp.storage();
 
-export { db, storage }
+export { db, storage };
