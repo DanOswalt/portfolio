@@ -44,6 +44,6 @@ export default {
   color: #eee;
   font-size: 1.8rem;
   margin-top: 25px;
-}
+  margin-right: 15px;}
 
 </style>

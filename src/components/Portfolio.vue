@@ -15,7 +15,6 @@
 
 <script>
 import Project from "@/components/Project.vue"
-// import projects from '../data/mock.json'
 import {db, storage} from '@/firebase/init.js'
 
 export default {
@@ -33,7 +32,6 @@ export default {
   methods: {
     handleScroll () {
       this.affixPortfolioHeader = window.scrollY > this.portfolioTopY - 50
-      console.log(this.portfolioTopY)
     }
   },
   created () {

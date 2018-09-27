@@ -13,7 +13,7 @@
           </div>
         </div>
 
-        <div v-else class="shrunken-header titles container has-text-left">
+        <div v-else class="shrunken-header titles has-text-left">
           <span class="title is-size-3">
             Dan Oswalt
           </span>
