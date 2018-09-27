@@ -1,9 +1,8 @@
 <template>
-  <section class="portfolio section">
-    <hr class="divider"/>
-    <h1 class="title portfolio-title is-size-1">Portfolio</h1>
-    <hr class="divider"/>
-    <div class="container">
+  <section class="portfolio">
+    <h1 v-show="!affixPortfolioHeader" class="title portfolio-title is-size-1">Portfolio</h1>
+    <h1 v-show="affixPortfolioHeader" class="affixed is-size-3">Portfolio</h1>
+    <div class="container section">
       <div class="portfolio-frame">
         <Project v-for="(project, index) in projects"
         :key="index"
@@ -26,10 +25,20 @@ export default {
   },
   data () {
     return {
-      projects: []
+      projects: [],
+      affixPortfolioHeader: false,
+      portfolioTopY: null
+    }
+  },
+  methods: {
+    handleScroll () {
+      this.affixPortfolioHeader = window.scrollY > this.portfolioTopY - 50
+      console.log(this.portfolioTopY)
     }
   },
   created () {
+    window.addEventListener('scroll', this.handleScroll);
+
     db.collection('projects').get()
     .then(snapshot => {
       this.projects = snapshot.docs.map(doc => {
@@ -39,6 +48,12 @@ export default {
     .catch(err => {
       console.log(err.message)
     })
+  },
+  mounted () {
+    this.portfolioTopY = document.querySelector('.portfolio').getBoundingClientRect().top
+  },
+  destroyed () {
+    window.removeEventListener('scroll', this.handleScroll);
   }
 }
 </script>
@@ -53,9 +68,22 @@ export default {
   padding: 0;
   margin: 0 auto;
   font-weight: lighter;
+  border-top: #cc0000 solid 2px;
+  border-bottom: #cc0000 solid 2px;
 }
-.divider {
-  background-color: #cc0000;
+.affixed {
+  position: fixed;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  color: #222;
+  font-weight: lighter;
+  border-top: #cc0000 solid 2px;
+  border-bottom: #cc0000 solid 2px;
+  z-index: 1;
+  background: #fff;
+  box-shadow: 0 8px 6px -6px white;
 }
 .project {
   border-radius: 10px;

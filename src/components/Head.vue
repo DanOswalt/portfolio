@@ -86,7 +86,7 @@ export default {
   },
   methods: {
     scrollToPortfolio () {
-      document.querySelector('.project').scrollIntoView({
+      document.querySelector('.portfolio').scrollIntoView({
         block: "start",
         behavior: "smooth"
       });
@@ -133,7 +133,7 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 50px;
   background: #111;
   z-index: 1;
