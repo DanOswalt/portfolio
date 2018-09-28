@@ -102,7 +102,6 @@ export default {
 .project-header {
   text-align: left;
   background-color: #111;
-  border-bottom: 4px solid #cc0000;
 }
 .project-title {
   display: inline-block;

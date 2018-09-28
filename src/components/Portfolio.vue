@@ -1,6 +1,6 @@
 <template>
   <section class="portfolio">
-    <h1 v-show="!affixPortfolioHeader" class="title portfolio-title is-size-1">Portfolio</h1>
+    <h1 class="title portfolio-title is-size-1">Portfolio</h1>
     <h1 v-show="affixPortfolioHeader" class="affixed is-size-1">Portfolio</h1>
     <div class="container section">
       <div class="portfolio-frame">
@@ -30,12 +30,20 @@ export default {
     };
   },
   methods: {
-    handleScroll() {
+    handleScroll () {
       this.affixPortfolioHeader = window.scrollY > this.portfolioTopY - 50;
+    },
+    handleResize () {
+      this.calcPortfolioTopY()
+    },
+    calcPortfolioTopY () {
+      this.portfolioTopY = document.querySelector(".portfolio")
+        .getBoundingClientRect().top;
     }
   },
   created() {
     window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener('resize', this.handleResize);
 
     db.collection("projects").orderBy("order", "desc")
       .get()
@@ -49,9 +57,7 @@ export default {
       });
   },
   mounted() {
-    this.portfolioTopY = document
-      .querySelector(".portfolio")
-      .getBoundingClientRect().top;
+    this.calcPortfolioTopY()
   },
   destroyed() {
     window.removeEventListener("scroll", this.handleScroll);
@@ -72,9 +78,7 @@ export default {
   margin: 0 auto;
   height: 70px;
   font-weight: lighter;
-  /* border-top: #cc0000 solid 2px; */
-  border-bottom: #cc0000 solid 2px;
-  box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 4px 6px 0px black;
 }
 .affixed {
   position: fixed;
@@ -84,14 +88,12 @@ export default {
   height: 70px;
   color: white;
   font-weight: lighter;
-  /* border-top: #cc0000 solid 2px; */
-  border-bottom: #cc0000 solid 2px;
   z-index: 1;
   background-color: #222;
-  box-shadow: 0 8px 6px -6px black;
+  box-shadow: 0 4px 6px 0px black;
 }
 .project {
   border-radius: 10px;
-  margin: 200px auto;
+  margin: 50px auto;
 }
 </style>
