@@ -25,11 +25,7 @@
         </ul>
       </div>
       <div class="tile is-ancestor">
-        <div class="tile">
-          <figure class="image project-image">
-            <img :src="imageSrc" alt="project image">
-          </figure>
-        </div>
+        <ImageSlider :imgURLs="imgURLs"/>
         <div class="tile card-content">
           <div class="project-description content">
             <p class="project-summary">
@@ -46,6 +42,7 @@
 </template>
 
 <script>
+import ImageSlider from '@/components/ImageSlider.vue'
 import { db, storage } from "@/firebase/init.js";
 
 export default {
@@ -53,40 +50,44 @@ export default {
   props: {
     project: Object,
   },
+  components: {
+    ImageSlider
+  },
   data() {
     return {
-      imageSrc: ""
+      imgURLs: []
     };
   },
   mounted() {
     const storageRef = storage.ref();
 
-    storageRef
-      .child("images/" + this.project.imgs[0])
-      .getDownloadURL()
-      .then(url => {
-        this.imageSrc = url;
-      })
-      .catch(error => {
-        // https://firebase.google.com/docs/storage/web/handle-errors
-        switch (error.code) {
-          case "storage/object_not_found":
-            // File doesn't exist
-            break;
+    this.project.imgs.forEach(name => {
+      storageRef.child("images/" + name)
+        .getDownloadURL()
+        .then(url => {
+          this.imgURLs.push(url)
+        })
+        .catch(error => {
+          // https://firebase.google.com/docs/storage/web/handle-errors
+          switch (error.code) {
+            case "storage/object_not_found":
+              // File doesn't exist
+              break;
 
-          case "storage/unauthorized":
-            // User doesn't have permission to access the object
-            break;
+            case "storage/unauthorized":
+              // User doesn't have permission to access the object
+              break;
 
-          case "storage/canceled":
-            // User canceled the upload
-            break;
+            case "storage/canceled":
+              // User canceled the upload
+              break;
 
-          case "storage/unknown":
-            // Unknown error occurred, inspect the server response
-            break;
-        }
-      });
+            case "storage/unknown":
+              // Unknown error occurred, inspect the server response
+              break;
+          }
+        });
+    })
   }
 };
 </script>
@@ -124,12 +125,6 @@ export default {
 .project-link {
   font-size: 1.5em;
   color: #eee;
-}
-.project-image {
-  margin: 2em auto;
-  max-width: 80%;
-  height: auto;
-  overflow: hidden;
 }
 .project-description {
   text-align: left;

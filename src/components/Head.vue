@@ -7,7 +7,7 @@
           <div class="title is-size-2-mobile is-size-1">
             Dan Oswalt
           </div>
-          &nbsp&nbsp&nbsp
+          &nbsp;&nbsp;&nbsp;
           <div class="subtitle is-size-3-mobile is-size-2">
             Web Developer
           </div>
@@ -17,7 +17,7 @@
           <span class="title is-size-3">
             Dan Oswalt
           </span>
-          &nbsp&nbsp
+          &nbsp;&nbsp;
           <span class="subtitle is-hidden-mobile is-size-5">
             Web Developer
           </span>
