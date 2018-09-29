@@ -30,7 +30,7 @@
       <div class="tile is-ancestor">
         <div class="tile is-5">
           <img alt="Picture of Dan Oswalt"
-          src="https://firebasestorage.googleapis.com/v0/b/danoswalt-161b1.appspot.com/o/me.jpeg?alt=media&token=7d1b7f98-42f5-463a-9abd-ecf8bc3167c9"
+          :src="profilePicURL"
           class="profile-pic"/>
         </div>
         <div class="contacts-adjust tile is-7">
@@ -82,29 +82,61 @@ export default {
       shrunkenHeader: false,
       showLabel: false,
       showLinksInHeader: false,
-      labelIsVisible: true
+      labelIsVisible: true,
+      profilePicURL: ""
     };
   },
   methods: {
-    scrollToPortfolio() {
+    scrollToPortfolio () {
       document.querySelector(".portfolio").scrollIntoView({
         block: "start",
         behavior: "smooth"
       });
     },
-    handleScroll() {
+    handleScroll () {
       this.scrolled = window.scrollY > 0;
       this.shrunkenHeader = window.scrollY > 120;
       this.showLinksInHeader = window.scrollY > 350;
+    },
+    getProfilePic () {
+      const storageRef = storage.ref();
+
+      storageRef.child('images/me.jpeg')
+        .getDownloadURL()
+        .then(url => {
+          this.profilePicURL = url
+        })
+        .catch(error => {
+          // https://firebase.google.com/docs/storage/web/handle-errors
+          switch (error.code) {
+            case "storage/object_not_found":
+              // File doesn't exist
+              break;
+
+            case "storage/unauthorized":
+              // User doesn't have permission to access the object
+              break;
+
+            case "storage/canceled":
+              // User canceled the upload
+              break;
+
+            case "storage/unknown":
+              // Unknown error occurred, inspect the server response
+              break;
+          }
+        });
     }
   },
-  created() {
+  created () {
     window.addEventListener("scroll", this.handleScroll);
 
     // fade in the down arrow and label
     setTimeout(() => {
       this.scrolled = false;
     }, 1000);
+
+    this.getProfilePic()
   },
   destroyed() {
     window.removeEventListener("scroll", this.handleScroll);

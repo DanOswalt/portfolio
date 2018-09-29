@@ -94,7 +94,7 @@ export default {
 
 <style scoped>
 .card {
-  border: solid black 1px;
+  /* border: solid black 1px; */
   max-width: 800px;
   margin: 50px auto;
   box-shadow: 0 8px 6px -6px black;

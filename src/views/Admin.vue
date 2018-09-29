@@ -17,10 +17,15 @@
         <button @click="login" type="button" name="button">Login</button>
       </form>
     </div>
+
     <div v-else class="add-project">
       <h1 class="title">Add Project</h1>
       <form @change="updateJSON" class="add-project-form">
         <div class="field">
+          <label class="label">Order</label>
+          <div class="control">
+            <input class="input" type="number" name="title" v-model="project.order" placeholder="order">
+          </div>
           <label class="label">Title</label>
           <div class="control">
             <input class="input" type="text" name="title" v-model="project.title" placeholder="title">

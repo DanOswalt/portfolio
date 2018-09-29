@@ -33,17 +33,18 @@ export default {
     handleScroll () {
       this.affixPortfolioHeader = window.scrollY > this.portfolioTopY - 50;
     },
-    handleResize () {
-      this.calcPortfolioTopY()
-    },
+    // handleResize () {
+    //   this.calcPortfolioTopY()
+    // },
     calcPortfolioTopY () {
       this.portfolioTopY = document.querySelector(".portfolio")
         .getBoundingClientRect().top;
+      // handleScroll();
     }
   },
   created() {
     window.addEventListener("scroll", this.handleScroll);
-    window.addEventListener('resize', this.handleResize);
+    // window.addEventListener("resize", this.handleResize);
 
     db.collection("projects").orderBy("order", "desc")
       .get()
