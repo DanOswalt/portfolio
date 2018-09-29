@@ -21,7 +21,7 @@
           <li v-for="(tag, index) in project.tags"
               :key="index"
               class="project-tag"
-          ><span class="tag is-dark">{{ tag }}</span></li>
+          ><span class="tag">{{ tag }}</span></li>
         </ul>
       </div>
       <div class="tile is-ancestor">
@@ -118,6 +118,10 @@ export default {
 .project-tags {
   text-align: left;
 }
+.tag {
+  background-color: #cc0000;
+  color: white;
+}
 .project-tag {
   margin: 0.1em;
 }
@@ -131,11 +135,11 @@ export default {
   margin-top: 0.5em;
 }
 pre {
-  white-space: -moz-pre-line; /* Mozilla, supported since 1999 */
-  white-space: -pre-line; /* Opera */
-  white-space: -o-pre-line; /* Opera */
-  white-space: pre-line; /* CSS3 - Text module (Candidate Recommendation) http://www.w3.org/TR/css3-text/#white-space */
-  word-wrap: break-word; /* IE 5.5+ */
+  white-space: -moz-pre-line;
+  white-space: -pre-line;
+  white-space: -o-pre-line;
+  white-space: pre-line;
+  word-wrap: break-word;
   background: #fff;
   font-family: 'Ubuntu'
 }

@@ -46,7 +46,7 @@ export default {
     window.addEventListener("scroll", this.handleScroll);
     // window.addEventListener("resize", this.handleResize);
 
-    db.collection("projects").orderBy("order", "desc")
+    db.collection("projects").orderBy("order")
       .get()
       .then(snapshot => {
         this.projects = snapshot.docs.map(doc => {
