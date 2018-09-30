@@ -35,9 +35,10 @@ export default {
 <style scoped>
 .contacts {
   display: inline-block;
+  margin-right: 4px;
 }
 .contact-icon {
-  margin-right: 0.3em;
+  margin-right: 2px;
   font-size: 1.8rem;
 }
 .headerStyles {

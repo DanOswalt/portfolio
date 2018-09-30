@@ -28,11 +28,8 @@
         <ImageSlider :imgURLs="imgURLs"/>
         <div class="tile card-content">
           <div class="project-description content">
-            <p class="project-summary">
-              <pre>
-                {{ project.summary }}
-              </pre>
-            </p>
+            <div class="project-summary" v-html="project.summary">
+            </div>
           </div>
         </div>
         </div>
@@ -115,6 +112,10 @@ export default {
   font-weight: lighter;
   padding-top: 0.1em;
 }
+.project-summary {
+  max-width: 90%;
+  margin: auto;
+}
 .project-tags {
   text-align: left;
 }
@@ -128,6 +129,10 @@ export default {
 .project-link {
   font-size: 1.5em;
   color: #eee;
+  margin-left: 15px;
+}
+.red-hilite {
+  color: #cc0000;
 }
 .project-description {
   text-align: left;

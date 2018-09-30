@@ -1,7 +1,7 @@
 <template>
   <section class="portfolio">
     <h1 class="title portfolio-title is-size-1">Portfolio</h1>
-    <h1 v-show="affixPortfolioHeader" class="affixed is-size-1">Portfolio</h1>
+    <!-- <h1 v-show="affixPortfolioHeader" class="affixed is-size-1">Portfolio</h1> -->
     <div class="container section">
       <div class="portfolio-frame">
         <Project v-for="(project, index) in projects"
