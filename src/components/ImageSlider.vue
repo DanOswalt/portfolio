@@ -1,7 +1,6 @@
 <template>
   <div class="tile slider">
     <figure class="image project-image">
-      <img :src="imgURLs[currentImageIndex]" alt="project image">
       <div class="nav-container" v-show="multipleImages">
         <span @click="currentImageIndex--"
               v-show="!atBeginning"
@@ -14,6 +13,7 @@
           <i class="fas fa-chevron-circle-right"></i>
         </span>
       </div>
+      <img :src="imgURLs[currentImageIndex]" alt="project image">
     </figure>
   </div>
 </template>

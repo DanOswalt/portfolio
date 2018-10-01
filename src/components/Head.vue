@@ -30,7 +30,7 @@
       <div class="tile is-ancestor">
         <div class="tile is-5">
           <img alt="Picture of Dan Oswalt"
-          :src="profilePicURL"
+          src="../assets/portfolio_pic.jpeg"
           class="profile-pic"/>
         </div>
         <div class="contacts-adjust tile is-7">
@@ -73,9 +73,9 @@ export default {
   data() {
     return {
       summaryStatements: [
-        `I am a problem-solver, communicator, and innovator.`,
         `I have ${new Date().getFullYear() -
           2015}+ years of on-the-job experience using JavaScript, HTML, and CSS to build full-stack apps and enhancements to sites and services.`,
+        `Something Else`,
         `I am like, *this close* to starting to learn to play my synthesizer`
       ],
       scrolled: true,
@@ -97,35 +97,6 @@ export default {
       this.scrolled = window.scrollY > 0;
       this.shrunkenHeader = window.scrollY > 120;
       this.showLinksInHeader = window.scrollY > 350;
-    },
-    getProfilePic () {
-      const storageRef = storage.ref();
-
-      storageRef.child('images/me.jpeg')
-        .getDownloadURL()
-        .then(url => {
-          this.profilePicURL = url
-        })
-        .catch(error => {
-          // https://firebase.google.com/docs/storage/web/handle-errors
-          switch (error.code) {
-            case "storage/object_not_found":
-              // File doesn't exist
-              break;
-
-            case "storage/unauthorized":
-              // User doesn't have permission to access the object
-              break;
-
-            case "storage/canceled":
-              // User canceled the upload
-              break;
-
-            case "storage/unknown":
-              // Unknown error occurred, inspect the server response
-              break;
-          }
-        });
     }
   },
   created () {
@@ -135,8 +106,6 @@ export default {
     setTimeout(() => {
       this.scrolled = false;
     }, 1000);
-
-    this.getProfilePic()
   },
   destroyed() {
     window.removeEventListener("scroll", this.handleScroll);
