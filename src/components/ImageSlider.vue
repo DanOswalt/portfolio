@@ -1,20 +1,20 @@
 <template>
   <div class="tile slider">
-    <figure class="image project-image">
-      <div class="nav-container" v-show="multipleImages">
+    <div class="image project-image">
+      <div class="nav-container is-clearfix" v-show="multipleImages">
         <span @click="currentImageIndex--"
               v-show="!atBeginning"
-              class="icon prev is-size-1">
-          <i class="fas fa-chevron-circle-left"></i>
+              class="icon prev is-size-2 is-pulled-left">
+          <i class="fas fa-angle-left"></i>
         </span>
         <span @click="currentImageIndex++"
               v-show="!atEnd"
-              class="icon next is-size-1">
-          <i class="fas fa-chevron-circle-right"></i>
+              class="icon next is-size-2 is-pulled-right">
+          <i class="fas fa-angle-right"></i>
         </span>
       </div>
       <img :src="imgURLs[currentImageIndex]" alt="project image">
-    </figure>
+    </div>
   </div>
 </template>
 
@@ -54,6 +54,10 @@ export default {
   overflow: hidden;
 }
 
+.nav-container {
+  margin-bottom: 4px;
+}
+
 .nav-container .icon {
   cursor: pointer;
   color: black;
@@ -65,15 +69,11 @@ export default {
 }
 
 .prev {
-  position: absolute;
-  top: 13px;
-  left: 13px;
+  margin-bottom: 6px;
 }
 
 .next {
-  position: absolute;
-  top: 13px;
-  right: 13px;
+  margin-bottom: 6px;
 }
 
 /* animation */
