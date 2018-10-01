@@ -2,16 +2,20 @@
   <div class="tile slider">
     <div class="image project-image">
       <div class="nav-container is-clearfix" v-show="multipleImages">
-        <span @click="currentImageIndex--"
-              v-show="!atBeginning"
-              class="icon prev is-size-2 is-pulled-left">
-          <i class="fas fa-angle-left"></i>
-        </span>
-        <span @click="currentImageIndex++"
-              v-show="!atEnd"
-              class="icon next is-size-2 is-pulled-right">
-          <i class="fas fa-angle-right"></i>
-        </span>
+        <div class="dots">
+          <ul v-show="size > 1">
+            <li @click="currentImageIndex--"
+                  v-show="!atBeginning"
+                  class="icon nav-icon prev is-size-2">
+              <i class="fas fa-angle-left"></i>
+            </li>
+            <li @click="currentImageIndex++"
+                  v-show="!atEnd"
+                  class="icon nav-icon next is-size-2">
+              <i class="fas fa-angle-right"></i>
+            </li>
+          </ul>
+        </div>
       </div>
       <img :src="imgURLs[currentImageIndex]" alt="project image">
     </div>
@@ -70,10 +74,12 @@ export default {
 
 .prev {
   margin-bottom: 6px;
+  margin-right: 10px;
 }
 
 .next {
   margin-bottom: 6px;
+  margin-left: 10px;
 }
 
 /* animation */
