@@ -66,14 +66,14 @@ export default {
 
 .prev {
   position: absolute;
-  top: 45%;
-  left: 20px;
+  top: 13px;
+  left: 13px;
 }
 
 .next {
   position: absolute;
-  top: 45%;
-  right: 20px;
+  top: 13px;
+  right: 13px;
 }
 
 /* animation */

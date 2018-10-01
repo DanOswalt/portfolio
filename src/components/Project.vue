@@ -131,7 +131,7 @@ export default {
   color: #eee;
   margin-left: 15px;
 }
-.red-hilite {
+p > span.red-hilite {
   color: #cc0000;
 }
 .project-description {
