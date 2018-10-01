@@ -53,7 +53,7 @@
     </div>
 
     <transition name="fade">
-      <div v-if="!scrolled" @click="scrollToPortfolio" class="view-portfolio-container has-text-centered">
+      <div v-if="!scrolled" @click="scrollToPortfolio" class="view-portfolio-container has-text-centered is-hidden-mobile">
         <i class="view-portfolio-arrow fas fa-chevron-circle-down"></i>
         <span class="arrow-label">My Work</span>
       </div>
