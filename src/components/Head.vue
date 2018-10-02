@@ -75,7 +75,7 @@ export default {
       summaryStatements: [
         `I have ${new Date().getFullYear() -
           2015}+ years of on-the-job experience using JavaScript, HTML, and CSS to build full-stack apps and enhancements to sites and services.`,
-        `Something Else`,
+        `I aim to create great user experiences. Beautiful things work better.`,
         `I am like, *this close* to starting to learn to play my synthesizer`
       ],
       scrolled: true,
