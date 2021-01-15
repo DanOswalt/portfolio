@@ -28,26 +28,26 @@ export default {
   props: {
     imgURLs: Array
   },
-  data () {
+  data() {
     return {
       currentImageIndex: 0
-    }
+    };
   },
   computed: {
-    size () {
+    size() {
       return this.imgURLs.length;
     },
-    atBeginning () {
+    atBeginning() {
       return this.currentImageIndex === 0;
     },
     atEnd() {
       return this.currentImageIndex === this.size - 1;
     },
     multipleImages() {
-      return this.size > 1
+      return this.size > 1;
     }
   }
-}
+};
 </script>
 
 <style scoped lang="css">

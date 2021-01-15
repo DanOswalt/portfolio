@@ -32,20 +32,19 @@
             </div>
           </div>
         </div>
-        </div>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import ImageSlider from '@/components/ImageSlider.vue'
-import { db, storage } from "@/firebase/init.js";
+import ImageSlider from "@/components/ImageSlider.vue";
+import { storage } from "@/firebase/init.js";
 
 export default {
   name: "Project",
   props: {
-    project: Object,
+    project: Object
   },
   components: {
     ImageSlider
@@ -59,10 +58,11 @@ export default {
     const storageRef = storage.ref();
 
     this.project.imgs.forEach(name => {
-      storageRef.child("images/" + name)
+      storageRef
+        .child("images/" + name)
         .getDownloadURL()
         .then(url => {
-          this.imgURLs.push(url)
+          this.imgURLs.push(url);
         })
         .catch(error => {
           // https://firebase.google.com/docs/storage/web/handle-errors
@@ -84,7 +84,7 @@ export default {
               break;
           }
         });
-    })
+    });
   }
 };
 </script>
@@ -146,6 +146,6 @@ pre {
   white-space: pre-line;
   word-wrap: break-word;
   background: #fff;
-  font-family: 'Ubuntu'
+  font-family: "Ubuntu";
 }
 </style>

@@ -9,7 +9,7 @@
           </div>
           &nbsp;&nbsp;&nbsp;
           <div class="subtitle is-size-3-mobile is-size-2">
-            Web Developer
+            Software Developer
           </div>
         </div>
 
@@ -19,7 +19,7 @@
           </span>
           &nbsp;&nbsp;
           <span class="subtitle is-hidden-mobile is-size-5">
-            Web Developer
+            Software Developer
           </span>
           <Contacts v-show="showLinksInHeader" :inHeader="showLinksInHeader"/>
         </div>
@@ -62,7 +62,6 @@
 </template>
 
 <script>
-import { storage } from "@/firebase/init.js";
 import Contacts from "@/components/Contacts.vue";
 
 export default {
@@ -74,8 +73,8 @@ export default {
     return {
       summaryStatements: [
         `I have ${new Date().getFullYear() -
-          2015}+ years of on-the-job experience using JavaScript, HTML, and CSS to build full-stack apps and enhancements to sites and services.`,
-        `I aim to create great user experiences. Beautiful things work better.`,
+          2016}+ years of on-the-job experience using JavaScript, HTML, and CSS to build full-stack apps and enhancements to sites and services.`,
+        `I have 2+ years of professional software development experience with Angular and Java, working in Agile/Scrum team at PNC Bank developing their online-banking web-app.`,
         `I am like, *this close* to starting to learn to play my synthesizer`
       ],
       scrolled: true,
@@ -87,19 +86,19 @@ export default {
     };
   },
   methods: {
-    scrollToPortfolio () {
+    scrollToPortfolio() {
       document.querySelector(".portfolio").scrollIntoView({
         block: "start",
         behavior: "smooth"
       });
     },
-    handleScroll () {
+    handleScroll() {
       this.scrolled = window.scrollY > 0;
       this.shrunkenHeader = window.scrollY > 120;
       this.showLinksInHeader = window.scrollY > 350;
     }
   },
-  created () {
+  created() {
     window.addEventListener("scroll", this.handleScroll);
 
     // fade in the down arrow and label
@@ -117,6 +116,7 @@ export default {
 <style scoped>
 .head {
   min-height: 150vh;
+  background: #222;
 }
 .hero {
   background: #111;
@@ -126,7 +126,7 @@ export default {
   display: inline-block;
   padding: 0;
   margin: 0.1em auto;
-  color: #eee;
+  color: #ccc;
 }
 .subtitle {
   display: inline-block;
@@ -157,7 +157,7 @@ export default {
   max-height: 200px;
   margin: -15px auto;
   border-radius: 100%;
-  border: white solid 5px;
+  border: #222 solid 5px;
 }
 .summary-containers {
   margin-top: 10px;
@@ -166,9 +166,11 @@ export default {
   margin: 0 10px;
 }
 .summary-statement {
-  color: #666;
+  color: #ccc;
   margin-top: 5px;
   text-align: left;
+  font-size: 1.3rem;
+  background: #111;
 }
 .summary-icon {
   color: #cc0000;
@@ -184,6 +186,7 @@ export default {
   cursor: pointer;
   box-shadow: 0 8px 6px -6px black;
   border-radius: 100%;
+  background: #ccc;
 }
 .view-portfolio-arrow:hover {
   opacity: 0.6;

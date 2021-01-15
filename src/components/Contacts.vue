@@ -41,12 +41,14 @@ export default {
   margin-left: 0px;
   margin-right: 0px;
   font-size: 1.8rem;
+  color: #ccc;
 }
 .contact-label {
   margin-left: 4px;
+  color: #ccc;
 }
 .headerStyles {
-  color: #eee;
+  color: #ccc;
   font-size: 1.8rem;
   margin-top: 25px;
   margin-right: 4px;

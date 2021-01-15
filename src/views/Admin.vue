@@ -120,7 +120,6 @@ export default {
           console.log(cred);
         })
         .catch(function(error) {
-          const errorCode = error.code;
           const errorMessage = error.message;
           console.log(errorMessage);
         });
@@ -164,11 +163,10 @@ export default {
     submitProject() {
       db.collection("projects")
         .add(this.project)
-        .then(doc => {
+        .then(() => {
           this.$router.push({ name: "Home" });
         })
         .catch(error => {
-          const errorCode = error.code;
           const errorMessage = error.message;
           console.log(errorMessage);
         });
