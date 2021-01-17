@@ -95,6 +95,8 @@ export default {
   max-width: 800px;
   margin: 50px auto;
   box-shadow: 0 8px 6px -6px black;
+  background: #222;
+  color: #ccc;
 }
 .project-header {
   text-align: left;

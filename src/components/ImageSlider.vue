@@ -64,7 +64,7 @@ export default {
 
 .nav-container .icon {
   cursor: pointer;
-  color: black;
+  color: #ddd;
   opacity: 0.8;
 }
 
