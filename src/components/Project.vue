@@ -136,6 +136,10 @@ export default {
 .project-summary >>> .red-hilite {
   color: #cc0000;
 }
+.project-summary >>> strong {
+  color: #ccc;
+}
+
 .project-description {
   text-align: left;
   width: 100%;
